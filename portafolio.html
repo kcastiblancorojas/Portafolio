@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Karen Lorena Castiblanco Rojas — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --rose:    #f7c5d5;
+    --rose-dk: #c2607e;
+    --mint:    #c7ead8;
+    --mint-dk: #3b8f63;
+    --sky:     #c5dff7;
+    --sky-dk:  #2f6fa8;
+    --lav:     #d8ccf5;
+    --lav-dk:  #5e42b8;
+    --peach:   #fde4c8;
+    --peach-dk:#b8622a;
+    --cream:   #fdf8f2;
+    --text:    #2c2520;
+    --muted:   #7a6e6a;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(253,248,242,0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #e8ddd4;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 60px;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem; color: var(--rose-dk);
+    letter-spacing: 0.01em;
+  }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav a { text-decoration: none; font-size: 0.88rem; font-weight: 400; color: var(--muted); transition: color .2s; }
+  nav a:hover { color: var(--rose-dk); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 5rem 2rem 3rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-blobs {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  }
+  .blob {
+    position: absolute; border-radius: 50%;
+    filter: blur(60px); opacity: 0.45;
+  }
+  .b1 { width: 380px; height: 380px; background: var(--rose);    top: -60px;  left: -80px; }
+  .b2 { width: 300px; height: 300px; background: var(--mint);    bottom: 20px; right: -60px; }
+  .b3 { width: 260px; height: 260px; background: var(--lav);     top: 30%;  right: 10%; }
+  .b4 { width: 220px; height: 220px; background: var(--peach);   bottom: 10%; left: 10%; }
+
+  .hero-inner { position: relative; z-index: 1; max-width: 640px; }
+
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.15; color: var(--text); margin-bottom: 0.5rem;
+  }
+  h1 em { font-style: italic; color: var(--rose-dk); }
+
+  .tagline {
+    font-size: 1rem; color: var(--muted);
+    margin-bottom: 2rem; font-weight: 300;
+  }
+
+  .pill-row {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    justify-content: center; margin-bottom: 2.5rem;
+  }
+  .pill {
+    padding: 0.3rem 1rem; border-radius: 999px;
+    font-size: 0.82rem; font-weight: 500;
+  }
+  .pill-r { background: var(--rose);  color: var(--rose-dk); }
+  .pill-m { background: var(--mint);  color: var(--mint-dk); }
+  .pill-s { background: var(--sky);   color: var(--sky-dk);  }
+  .pill-l { background: var(--lav);   color: var(--lav-dk);  }
+  .pill-p { background: var(--peach); color: var(--peach-dk);}
+
+  .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    padding: 0.65rem 1.6rem; border-radius: 999px;
+    font-size: 0.9rem; font-weight: 500;
+    text-decoration: none;
+    transition: transform .15s, box-shadow .15s;
+    cursor: pointer; border: none;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+  .btn-primary { background: var(--rose-dk); color: #fff; }
+  .btn-outline  { background: transparent; border: 1.5px solid var(--rose-dk); color: var(--rose-dk); }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    margin-bottom: 2rem; line-height: 1.2;
+  }
+  h2 em { font-style: italic; color: var(--rose-dk); }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2rem; align-items: center;
+  }
+  .about-text p { color: var(--muted); margin-bottom: 1rem; font-weight: 300; }
+  .about-card {
+    background: #fff; border-radius: 20px;
+    padding: 1.5rem; border: 1px solid #e8ddd4;
+  }
+  .about-card-row {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.55rem 0; border-bottom: 1px solid #f0e8e0;
+  }
+  .about-card-row:last-child { border-bottom: none; }
+  .card-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .about-card-row span { font-size: 0.9rem; color: var(--text); }
+  .about-card-row small { margin-left: auto; font-size: 0.78rem; color: var(--muted); }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.2rem;
+  }
+  .skill-card {
+    background: #fff; border-radius: 16px;
+    padding: 1.2rem 1rem; text-align: center;
+    border: 1px solid #e8ddd4; transition: transform .15s;
+  }
+  .skill-card:hover { transform: translateY(-3px); }
+  .skill-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    margin: 0 auto 0.75rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+  .skill-card h3 { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.3rem; }
+  .skill-card p  { font-size: 0.78rem; color: var(--muted); }
+  .bar-wrap { background: #f0e8e0; border-radius: 999px; height: 5px; margin-top: 0.6rem; overflow: hidden; }
+  .bar { height: 100%; border-radius: 999px; }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; gap: 1.8rem; }
+  .project-card {
+    background: #fff; border-radius: 20px;
+    padding: 2rem; border: 1px solid #e8ddd4;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 1rem; align-items: start; transition: transform .15s;
+  }
+  .project-card:hover { transform: translateY(-3px); }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
+  .project-card h3 { font-size: 1.05rem; font-weight: 500; margin-bottom: 0.4rem; }
+  .project-card p { font-size: 0.88rem; color: var(--muted); font-weight: 300; }
+  .project-badge {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; flex-shrink: 0;
+  }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    margin-top: 0.75rem; font-size: 0.82rem; font-weight: 500;
+    color: var(--rose-dk); text-decoration: none; opacity: 0.7;
+  }
+  .project-link:hover { opacity: 1; }
+
+  /* LEARNING */
+  .learning-row { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .learning-item {
+    background: #fff; border: 1px solid #e8ddd4;
+    border-radius: 12px; padding: 0.75rem 1.2rem;
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.88rem;
+  }
+  .l-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* CONTACT */
+  .contact-box {
+    background: linear-gradient(135deg, #fce8ef, #f0e5fa);
+    border-radius: 24px; padding: 3rem 2rem; text-align: center;
+  }
+  .contact-box h2 { margin-bottom: 0.75rem; }
+  .contact-box p { color: var(--muted); margin-bottom: 2rem; font-weight: 300; }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 2rem;
+    font-size: 0.8rem; color: var(--muted);
+    border-top: 1px solid #e8ddd4;
+  }
+
+  @media (max-width: 600px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .project-card { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Karen Castiblanco</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-blobs">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+    <div class="blob b4"></div>
+  </div>
+  <div class="hero-inner">
+   
+    <h1>Karen Lorena<br><em>Castiblanco Rojas</em></h1>
+    <p class="tagline">Web Design · Programming · Centennial College — 2nd Semester</p>
+    <div class="pill-row">
+      <span class="pill pill-r">HTML &amp; CSS</span>
+      <span class="pill pill-m">Python (learning)</span>
+      <span class="pill pill-s">C# (learning)</span>
+      <span class="pill pill-l">Java Script (learning)</span>
+      <span class="pill pill-p">Linux (learning)</span>
+    </div>
+    <div class="btn-group">
+      <a href="#projects" class="btn btn-primary">View my work</a>
+      <a href="#contact"  class="btn btn-outline">Get in touch</a>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">About me</p>
+  <h2>A curious learner<br>building <em>real things</em></h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Hi! I'm Karen, a computer programming student at Centennial College, currently in my second semester. I love learning by doing — from designing web pages to fixing broken ones in the real world.</p>
+      <p>I'm growing my skills every day: writing Python scripts, exploring databases, and diving into Linux. My portfolio is small but intentional — every project here is something I genuinely worked on and am proud of.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-card-row">
+        <div class="card-dot" style="background:var(--rose-dk)"></div>
+        <span>Centennial College</span>
+        <small>Toronto, ON</small>
+      </div>
+      <div class="about-card-row">
+        <div class="card-dot" style="background:var(--mint-dk)"></div>
+        <span>Computer Programming</span>
+        <small>Semester 2</small>
+      </div>
+      <div class="about-card-row">
+        <div class="card-dot" style="background:var(--sky-dk)"></div>
+        <span>Web Design</span>
+        <small>Focus area</small>
+      </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Skills</p>
+  <h2>What I <em>know</em> &amp; what I'm learning</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon" style="background:var(--rose)">🌐</div>
+      <h3>HTML &amp; CSS</h3>
+      <p>Web structure &amp; styling</p>
+      <div class="bar-wrap"><div class="bar" style="width:75%;background:var(--rose-dk)"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon" style="background:var(--mint)">🐍</div>
+      <h3>Python</h3>
+      <p>Core fundamentals</p>
+      <div class="bar-wrap"><div class="bar" style="width:50%;background:var(--mint-dk)"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon" style="background:var(--sky)">⚙️</div>
+      <h3>C#</h3>
+      <p>Programming basics</p>
+      <div class="bar-wrap"><div class="bar" style="width:45%;background:var(--sky-dk)"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon" style="background:var(--lav)">☕</div>
+      <h3>Java Script</h3>
+      <p>Currently learning</p>
+      <div class="bar-wrap"><div class="bar" style="width:25%;background:var(--lav-dk)"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon" style="background:var(--peach)">🐧</div>
+      <h3>Linux</h3>
+      <p>In progress</p>
+      <div class="bar-wrap"><div class="bar" style="width:30%;background:var(--peach-dk)"></div></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon" style="background:var(--rose)">🗄️</div>
+      <h3>Databases</h3>
+      <p>Learning fundamentals</p>
+      <div class="bar-wrap"><div class="bar" style="width:20%;background:var(--rose-dk)"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">Projects</p>
+  <h2>Things I've <em>built</em></h2>
+  <div class="projects-grid">
+
+    <!-- PROJECT 1 — Update href with your real GitHub Pages link -->
+    <div class="project-card">
+      <div>
+        <div class="project-tags">
+          <span class="pill pill-r">HTML</span>
+          <span class="pill pill-m">CSS</span>
+          <span class="pill pill-s">Semester 1</span>
+        </div>
+        <h3>Final Project — Web Design I</h3>
+        <p>My capstone project for the first semester web design course. Designed and built a full multi-page website applying layout, typography, and responsive design principles.</p>
+        <!-- Replace # with your actual GitHub Pages or repo link -->
+        <a href="https://kcastiblancorojas.github.io/Reverie_Spa/" class="project-link">View on GitHub →</a>
+      </div>
+      <div class="project-badge" style="background:var(--rose)">🎨</div>
+    </div>
+
+    <!-- PROJECT 2 — Update href with your real GitHub Pages link -->
+    <div class="project-card">
+      <div>
+        <div class="project-tags">
+          <span class="pill pill-l">HTML</span>
+          <span class="pill pill-p">CSS</span>
+          <span class="pill pill-r">Semester 2</span>
+        </div>
+        <h3>Assignment 1 — Web Design II</h3>
+        <p>First major assignment of my second semester. Built upon what I learned in Semester 1, incorporating more advanced layout techniques and refined design decisions.</p>
+        <!-- Replace # with your actual GitHub Pages or repo link -->
+        <a href="https://kcastiblancorojas.github.io/Creps_and_wafles/" class="project-link">View on GitHub →</a>
+      </div>
+      <div class="project-badge" style="background:var(--lav)">✏️</div>
+    </div>
+
+    <!-- PROJECT 3 — Team project, update href and add your classmate's name if you like -->
+    <div class="project-card">
+      <div>
+        <div class="project-tags">
+          <span class="pill pill-m">Team Project</span>
+          <span class="pill pill-s">Real-world</span>
+          <span class="pill pill-p">HTML &amp; CSS</span>
+        </div>
+        <h3>Website Repair Project</h3>
+        <p>Collaborated with a classmate to diagnose and fix a live website with broken links and layout issues. I was responsible for building the menu, order, and checkout pages — a hands-on taste of real-world web work.</p>
+        <!-- Replace # with your actual GitHub Pages or repo link -->
+        <a href="https://kcastiblancorojas.github.io/columbus_bakery/home.html" class="project-link">View on GitHub →</a>
+      </div>
+      <div class="project-badge" style="background:var(--mint)">🔧</div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRENTLY LEARNING -->
+<section>
+  <p class="section-label">Right now</p>
+  <h2>Currently <em>exploring</em></h2>
+  <div class="learning-row">
+    <div class="learning-item"><div class="l-dot" style="background:var(--lav-dk)"></div>Java programming</div>
+    <div class="learning-item"><div class="l-dot" style="background:var(--peach-dk)"></div>Linux command line</div>
+    <div class="learning-item"><div class="l-dot" style="background:var(--mint-dk)"></div>Database fundamentals</div>
+    <div class="learning-item"><div class="l-dot" style="background:var(--sky-dk)"></div>Version control with Git</div>
+    <div class="learning-item"><div class="l-dot" style="background:var(--rose-dk)"></div>Web accessibility</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-box">
+    <p class="section-label">Contact</p>
+    <h2>Let's <em>connect</em></h2>
+    <p>I'm always happy to chat about web design, school projects, or opportunities. Feel free to reach out!</p>
+    <div class="btn-group">
+      <!-- Replace with your real email -->
+      <a href="mailto:kcastiblancorojas@gmail.com" class="btn btn-primary">Send me an email</a>
+      <!-- Replace with your real GitHub profile URL -->
+      <a href="https://github.com/kcastiblancorojas" target="_blank" class="btn btn-outline">GitHub profile</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Made with care by Karen Lorena Castiblanco Rojas &nbsp;·&nbsp; Centennial College 2025
+</footer>
+
+</body>
+</html>
